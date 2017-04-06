@@ -1,5 +1,5 @@
 import { providers } from './firebase'
-
+import { syncThatWithFirebase } from './thats'
 export const SIGNIN = 'SIGNIN'
 export const SIGNOUT = 'SIGNOUT'
 
@@ -27,12 +27,26 @@ export const signOut = () => (dispatch, getState) => {
   })
 }
 
-export const authenticate = (store) => (nextState, replace) => {
+export const authenticate = (store) => (nextState, replace, callback) => {
+  console.log('auth!')
   const state = store.getState()
-  if (state.auth.user == null) {
-    replace('/login')
+  const auth = state.app.auth()
+  if (auth.currentUser) {
+    console.log('user found')
+    return callback()
   }
-  return
+  console.log('waiting for user')
+  auth.onAuthStateChanged((user) => {
+    console.log('got user state')
+    if (user) {
+      store.dispatch({ type: SIGNIN, payload: user })
+      syncThatWithFirebase(store)
+      callback()
+    } else {
+      replace('/login')
+      callback()
+    }
+  })
 }
 
 export const loginRedirect = (store) => (nextState, replace) => {

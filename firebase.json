@@ -3,7 +3,7 @@
     "rules": "database.rules.json"
   },
   "hosting": {
-    "public": "savedforthat/build",
+    "public": "frontend/build",
     "rewrites": [
       {
         "source": "**",

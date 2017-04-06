@@ -1,6 +1,5 @@
 import { providers } from './firebase'
 
-
 export const SIGNIN = 'SIGNIN'
 export const SIGNOUT = 'SIGNOUT'
 
@@ -12,7 +11,6 @@ const initialState = {
 export const signIn = () => (dispatch, getState) => {
   const state = getState()
   const app = state.app
-
   app.auth().signInWithRedirect(providers.google)
 }
 
@@ -29,6 +27,23 @@ export const signOut = () => (dispatch, getState) => {
   })
 }
 
+export const authenticate = (store) => (nextState, replace) => {
+  const state = store.getState()
+  if (state.auth.user == null) {
+    replace('/login')
+  }
+  return
+}
+
+export const loginRedirect = (store) => (nextState, replace) => {
+  const state = store.getState()
+  console.log('login redirect', state.auth.user)
+  if (state.auth.user != null) {
+    replace('/')
+  }
+  return
+}
+
 const auth = (state = initialState, action) => {
   switch (action.type) {
     case SIGNOUT:
@@ -39,7 +54,7 @@ const auth = (state = initialState, action) => {
         user: action.payload
       }
     default:
-      return initialState
+      return state
   }
 }
 

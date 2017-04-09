@@ -4,9 +4,11 @@ import { push } from 'react-router-redux'
 const CreateThat = ({ push }) => {
   return (
     <button
+      className='create-that'
       onClick={() => push('/thats/new')}
     >
-      CreateThat
+      <div></div>
+      <div></div>
     </button>
   )
 }

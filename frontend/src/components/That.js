@@ -5,6 +5,10 @@ import { addSaving } from '../reducers/thats'
 
 const That = ({ that, addSaving }) =>
   <div className='that'>
+    <img
+      alt={that.name}
+      src={"https://firebasestorage.googleapis.com/v0/b/savedforthat-83a18.appspot.com/o/Image%203.png?alt=media&token=5fe57852-a3bb-43c9-ae7e-b001fbadd3c7"}
+    />
     {that.name}({that.currentSaving}/{that.price})
     <input name="newsaving" type="tel" />
     <button

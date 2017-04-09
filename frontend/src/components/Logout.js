@@ -4,7 +4,7 @@ import { signOut } from '../reducers/auth'
 
 const Logout = ({ signOut }) => {
   return (
-    <button onClick={signOut}>logout</button>
+    <button className='logout' onClick={signOut}>logout</button>
   )
 }
 

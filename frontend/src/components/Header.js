@@ -1,15 +1,19 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
-import { Link } from 'react-router'
+import '../styles/Header.css'
 
 const Header = ({ user, push }) => {
   return (
-    <div>
-      <Link to='/'>Home</Link>
-      <Link to='/thats'>Thats</Link>
-      {user.displayName}
-    </div>
+    <header>
+      <div
+        className="logo"
+        onClick={() => push('/thats')}
+      >
+        sft
+      </div>
+      {/*{user.displayName}*/}
+    </header>
   )
 }
 

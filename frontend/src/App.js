@@ -27,7 +27,7 @@ const mapDispatchToProps = {
 }
 
 const mapStateToProps = state => ({
-  signedIn: state.auth.signedIn
+  signedIn: state.auth.user != null
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

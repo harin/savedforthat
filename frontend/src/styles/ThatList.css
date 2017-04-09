@@ -1,0 +1,69 @@
+.that-list {
+  display: flex;
+  flex-flow: wrap;
+  width: 396px;
+  margin: 0 auto;
+}
+
+.that {
+  box-sizing: border-box;
+  width: 170px;
+  height: 230px;
+  margin: 14px;
+  border-radius: 4px;
+  font-size: 1.3em;
+  font-weight: 800;
+  border: 1px solid #c4c4c4;
+  position: relative;
+  overflow: hidden;
+}
+
+.that .text {
+  text-align: left;
+  padding-left: 10px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 10px;
+  background-color: #e0e0e0;
+  position: absolute;
+  bottom: 0;
+}
+
+.progress-bar .progress {
+  background-color: #56CCF2;
+  height: 100%;
+}
+
+.create-that {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  border: none;
+  border-radius: 40px;
+  background-color: #27AE60;
+  box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.4);
+}
+
+.create-that:active {
+  background-color: #128c45;
+}
+
+.create-that div {
+  width: 30px;
+  margin-left: 9px;
+  height: 7px
+}
+.create-that div:first-child {
+  background-color: white;
+  transform: translateY(3.5px);
+}
+
+.create-that div:last-child {
+  background-color: white;
+  transform: translateY(-3.5px) rotate(90deg);
+}
+

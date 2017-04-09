@@ -4,7 +4,6 @@ export const SIGNIN = 'SIGNIN'
 export const SIGNOUT = 'SIGNOUT'
 
 const initialState = {
-  signedIn: false,
   user: null
 }
 
@@ -37,9 +36,12 @@ export const authenticate = (store) => (nextState, replace, callback) => {
   }
   console.log('waiting for user')
   auth.onAuthStateChanged((user) => {
-    console.log('got user state')
+    console.log('auth state change x', user)
+    store.dispatch({ type: SIGNIN, payload: user })
     if (user) {
-      store.dispatch({ type: SIGNIN, payload: user })
+      if (state.routing.locationBeforeTransitions.pathname === '/login') {
+        replace('/thats')
+      }
       syncThatWithFirebase(store)
       callback()
     } else {
@@ -49,13 +51,32 @@ export const authenticate = (store) => (nextState, replace, callback) => {
   })
 }
 
-export const loginRedirect = (store) => (nextState, replace) => {
+export const loginRedirect = (store) => (nextState, replace, callback) => {
   const state = store.getState()
   console.log('login redirect', state.auth.user)
   if (state.auth.user != null) {
-    replace('/')
+    if (state.routing.locationBeforeTransitions.pathname === '/login') {
+      replace('/thats')
+    }
   }
-  return
+
+  const auth = state.app.auth()
+  auth.onAuthStateChanged((user) => {
+    console.log('auth state change', user)
+    store.dispatch({ type: SIGNIN, payload: user })
+    if (user) {
+      console.log(state)
+      if (state.routing.locationBeforeTransitions.pathname === '/login') {
+        console.log('replacing thats', replace)
+        replace('/thats')
+        callback()
+      }
+      syncThatWithFirebase(store)
+    } else {
+      replace('/login')
+      callback()
+    }
+  })
 }
 
 const auth = (state = initialState, action) => {
@@ -64,7 +85,6 @@ const auth = (state = initialState, action) => {
       return initialState
     case SIGNIN:
       return {
-        signedIn: true,
         user: action.payload
       }
     default:

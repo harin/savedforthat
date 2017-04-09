@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import That from './That'
 import CreateThat from './CreateThat'
 import ThatItem from './ThatItem'
+import '../styles/ThatList.css'
 
 const ThatList = ({ thats }) => {
   return (

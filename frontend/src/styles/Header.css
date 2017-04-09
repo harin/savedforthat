@@ -1,0 +1,21 @@
+header {
+  width: 100%;
+  background-color: #4f4f4f;
+  height: 70px;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+  margin-bottom: 10px;
+}
+
+header .logo {
+  font-family: 'lato';
+  font-size: 4em;
+  text-align: left;
+  line-height: 70px;
+  padding-left: 10px;
+  color: #333;
+  font-weight: 700;
+}

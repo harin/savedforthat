@@ -15,7 +15,7 @@ import ThatList from './components/ThatList'
 import NewThat from './components/NewThat'
 import That from './components/That'
 import Login from './components/Login'
-import { loadThats, syncThatWithFirebase } from './reducers/thats'
+import { loadThats } from './reducers/thats'
 import { authenticate, loginRedirect } from './reducers/auth'
 
 // Create a history of your choosing (we're using a browser history in this case)
